@@ -41,29 +41,30 @@ class TestClassroomGeneration(unittest.TestCase):
 
         classrooms = [
             graph_generation.new_classroom(
-                avg_num_students=pop_avg,
+                # add 1 for the teacher
+                avg_num_students=pop_avg + 1,
                 variation_coeff=pop_std_dev * 1.0 / pop_avg
             )
             for c in range(n)
-            ]
+        ]
 
         mean_users = numpy.mean([len(c) for c in classrooms])
 
         # We generate the 99.99% confidence interval for this sample mean
         max_distance = z_for_99_point_99_confidence * pop_std_dev / numpy.sqrt(n)
 
-        self.assertTrue(numpy.abs(mean_users - pop_avg) < max_distance,
-                        msg='classroom size exceeded expected bounds (may happen 1 out of 10,000 times)')
+        self.assertTrue(
+            numpy.abs(mean_users - pop_avg) < max_distance,
+            msg='classroom size exceeded expected bounds (may happen 1 out of 10,000 times)'
+        )
 
     def test_teacher_exists(self):
         n = 10
+
         classrooms = [
-            graph_generation.new_classroom(
-                avg_num_students=25,
-                variation_coeff=0.1
-            )
+            graph_generation.new_classroom(avg_num_students=25, variation_coeff=0.1)
             for c in range(n)
-            ]
+        ]
 
         for c in classrooms:
             # Make sure there's at least one user with n-1 learners
