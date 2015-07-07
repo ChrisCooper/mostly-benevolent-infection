@@ -1,6 +1,6 @@
 import fun
 
-class User:
+class User(object):
     """
     A basic user with site version, email, and coaching relationships.
 
@@ -10,7 +10,7 @@ class User:
         self.email = fun.cool_email()
 
         # Site version is a simple integer
-        self.site_version = 1
+        self._site_version = 1
 
         # The users that coach this user
         self.coach_set = set()
@@ -30,3 +30,13 @@ class User:
             num_learners=len(self.learner_set),
         )
 
+    @property
+    def site_version(self):
+        """The version of the site that the user sees"""
+        return self._site_version
+
+    @site_version.setter
+    def site_version(self, value):
+        if not isinstance(value, int):
+            raise TypeError('Site version must be an int')
+        self._site_version = value
