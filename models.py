@@ -1,11 +1,13 @@
 import fun
 
+
 class User(object):
     """
     A basic user with site version, email, and coaching relationships.
 
     Relationships are stored as sets.
     """
+
     def __init__(self):
         self.email = fun.cool_email()
 
@@ -22,7 +24,6 @@ class User(object):
         """The coach argument becomes a coach of this user, and the coach's learner set is updated"""
         self.coach_set.add(coach)
         coach.learner_set.add(self)
-
 
     def __repr__(self):
         return '<User "{email}" c{num_coaches} l{num_learners}>'.format(
