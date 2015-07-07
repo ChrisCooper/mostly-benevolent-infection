@@ -5,3 +5,8 @@ Mostly-Benevolent Infection illustrates how one might spread new features to use
 
 The main principle is to avoid giving different versions to users in the same classroom or with coaching relationships.
 
+Running tests
+-------------
+
+- `cd mostly-benevolent-infection`
+- `nosetests`
