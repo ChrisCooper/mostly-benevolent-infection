@@ -20,11 +20,9 @@ class User(object):
 
     def add_coach(self, coach):
         """The coach argument becomes a coach of this user, and the coach's learner set is updated"""
-        if not isinstance(coach, User):
-            raise TypeError('Coach being added to user must be a User')
-
         self.coach_set.add(coach)
         coach.learner_set.add(self)
+
 
     def __repr__(self):
         return '<User "{email}" c{num_coaches} l{num_learners}>'.format(
