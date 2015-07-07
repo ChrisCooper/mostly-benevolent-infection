@@ -24,9 +24,9 @@ class User:
         coach.learner_set.add(self)
 
     def __repr__(self):
-        return '<User "{email}" with {num_coaches} coaches and {num_learners} learners>'.format(
+        return '<User "{email}" c{num_coaches} l{num_learners}>'.format(
             email=self.email,
             num_coaches=len(self.coach_set),
-            num_learners=len(self.num_learners),
+            num_learners=len(self.learner_set),
         )
 
