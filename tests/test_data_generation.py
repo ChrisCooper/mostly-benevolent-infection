@@ -2,22 +2,7 @@ import unittest
 import numpy
 import fun
 import graph_generation
-
-
-class TestFunEmails(unittest.TestCase):
-    def test_format_is_consistent(self):
-        for i in range(10):
-            email = fun.cool_email()
-            self.assertRegexpMatches(email, r'\S+\.the.\S+\.\S+@example.com')
-
-    def test_emails_are_unique(self):
-        num_trials = 100
-        emails_set = set()
-
-        for i in range(num_trials):
-            emails_set.add(fun.cool_email())
-
-        self.assertEqual(len(emails_set), num_trials, msg="emails were not unique")
+import models
 
 
 class TestClassroomGeneration(unittest.TestCase):
@@ -73,6 +58,51 @@ class TestClassroomGeneration(unittest.TestCase):
                 len(c) - 1,
                 msg="no teacher found"
             )
+
+
+class TestRandomCoaching(unittest.TestCase):
+    def test_some_coaches_added_at_rate(self):
+        n = 100
+        rate = 0.1
+        population = [models.User() for u in range(n)]
+
+        graph_generation.add_random_coaches(population, rate)
+
+        # There's a (1-rate)^n chance that there will be no coaches
+        # So for n=100 and rate = 0.1. that's 1 in 35,000
+        # Make sure there's at least 1 coach
+        self.assertGreaterEqual(
+            max(len(u.learner_set) for u in population),
+            1,
+            msg="No coaches were found"
+        )
+
+    def test_no_coaches_added_at_no_rate(self):
+        population = [models.User() for u in range(100)]
+
+        graph_generation.add_random_coaches(population, 0)
+
+        self.assertEqual(
+            max(len(u.learner_set) for u in population),
+            0,
+            msg="Found a coach unexpectedly"
+        )
+
+
+class TestFunEmails(unittest.TestCase):
+    def test_format_is_consistent(self):
+        for i in range(10):
+            email = fun.cool_email()
+            self.assertRegexpMatches(email, r'\S+\.the.\S+\.\S+@example.com')
+
+    def test_emails_are_unique(self):
+        num_trials = 100
+        emails_set = set()
+
+        for i in range(num_trials):
+            emails_set.add(fun.cool_email())
+
+        self.assertEqual(len(emails_set), num_trials, msg="emails were not unique")
 
 
 if __name__ == '__main__':

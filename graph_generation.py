@@ -31,4 +31,16 @@ def new_classroom(avg_num_students, variation_coeff, extra_coaching_rate=0.15):
         if student is not teacher:
             student.add_coach(teacher)
 
+    add_random_coaches(class_list, extra_coaching_rate)
+
     return class_list
+
+
+def add_random_coaches(population, rate):
+    """
+    Given a population of users, adds random coaching relationships at the specified rate
+    """
+    for user in population:
+        other_user = random.choice(population)
+        if random.uniform(0, 1) < rate and user is not other_user:
+            user.add_coach(other_user)
