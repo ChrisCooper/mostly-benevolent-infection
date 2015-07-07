@@ -1,7 +1,7 @@
 import unittest
 import models
 
-class TestUserModel(unittest.TestCase):
+class TestUserModelBasics(unittest.TestCase):
     def test_new_user_has_correct_values(self):
         u = models.User()
         self.assertTrue(len(u.email) > 0, msg='no email is set')
@@ -16,6 +16,14 @@ class TestUserModel(unittest.TestCase):
 
         self.assertTrue(c in u.coach_set)
         self.assertTrue(u in c.learner_set)
+
+    def test_site_versions_must_be_ints(self):
+        u = models.User()
+
+        self.assertRaises(TypeError, lambda: self.assign_bad_site_version(u))
+
+    def assign_bad_site_version(self, user):
+        user.site_version = 'bad'
 
 if __name__ == '__main__':
     unittest.main()
