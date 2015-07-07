@@ -9,6 +9,13 @@ class TestUserModelBasics(unittest.TestCase):
         self.assertEqual(len(u.coach_set), 0)
         self.assertEqual(len(u.learner_set), 0)
 
+    def test_coach_must_be_a_user(self):
+        u = models.User()
+        self.assertRaises(TypeError, lambda: self.add_bad_coach(u))
+
+    def add_bad_coach(self, user):
+        user.add_coach('i\'m a board certified spanish tutor')
+
     def test_coach_relationship_works(self):
         u = models.User()
         c = models.User()
