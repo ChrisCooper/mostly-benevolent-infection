@@ -16,7 +16,7 @@ class TestClassroomGeneration(unittest.TestCase):
     def test_size_distribution(self):
         """
         This test may fail 1 out of 10,000 times because it tests a sample
-        mean against a population
+        mean against a population mean
         """
 
         pop_avg = 100
@@ -60,6 +60,23 @@ class TestClassroomGeneration(unittest.TestCase):
             )
 
 
+class TestSchoolGeneration(unittest.TestCase):
+    def test_list_is_flat(self):
+        classroom_gen = lambda: graph_generation.new_classroom(
+            avg_num_students=10,
+            variation_coeff=0.1
+        )
+
+        school = graph_generation.new_school(
+            avg_num_classes=3,
+            variation_coeff=0.3,
+            class_gen=classroom_gen
+        )
+
+        for u in school:
+            self.assertIsInstance(u, models.User, msg='School list not flattened')
+
+
 class TestRandomCoaching(unittest.TestCase):
     def test_some_coaches_added_at_rate(self):
         n = 100
@@ -87,6 +104,15 @@ class TestRandomCoaching(unittest.TestCase):
             0,
             msg="Found a coach unexpectedly"
         )
+
+class TestBoundedDistribution(unittest.TestCase):
+    def test_lower_bound(self):
+        for mean in range(-5,5):
+            self.assertGreaterEqual(
+                graph_generation.int_from_bounded_distribution(mean, 10),
+                1,
+                msg='value wasn\'t bounded'
+            )
 
 
 class TestFunEmails(unittest.TestCase):
