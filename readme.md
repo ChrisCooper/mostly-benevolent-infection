@@ -16,7 +16,7 @@ In this guide, all commands are assumed to be executed in the project root direc
 Setting up
 ----------
 
-This app has been tested with Python 2.7.6 on Ubuntu 14.04.
+This app has been tested with Python 2.7.6 on Ubuntu 14.04 and Python 2.7.5 on OS X 10.9.5.
 
     # Create a virtual-env for the app. Optional but recommended
     virtualenv env; source env/bin/activate
@@ -24,6 +24,9 @@ This app has been tested with Python 2.7.6 on Ubuntu 14.04.
     # Install required packages
     pip install -r requirements.txt
 
+If either of the commands fail because they're not installed, here are guides for
+[pip](https://pip.pypa.io/en/latest/installing.html) and here
+for [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html)
 
 Running tests
 -------------
