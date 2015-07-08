@@ -188,7 +188,7 @@ var InfectionGraph = function(selector) {
                 .attr("x2", function (d) {return d.target.x;})
                 .attr("y2", function (d) {return d.target.y;});
 
-            var k = e.alpha * .1;
+            var k = e.alpha * .05;
 
             // Move nodes apart based on infection
             graph.graph_data.nodes.forEach(function(node) {
