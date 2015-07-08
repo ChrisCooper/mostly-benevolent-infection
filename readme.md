@@ -33,11 +33,27 @@ Running the app
 The app should now be running at [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 
-Extra notes
+Reflections
 -------------
 
 Things that could use tweaking:
 
-- Only one session at a time is supported (multiple tabs... not today!)
+- Only one session at a time is supported (multiple tabs... not today!) via an ugly global variable
 - The client-side JSX transformer is being used, and there's no compressing of JavaScript
 - Tests don't extend to web app section
+
+Extra Notes
+-------------
+
+Thanks to:
+
+- [MomsWhoThink.com](http://www.momswhothink.com/) for the adjectives and adverbs lists
+- [The United States Social Security Administration](http://www.ssa.gov) for the names list
+
+The name generator gave these gems within the first 15 or 20 outputs. I am pleased:
+
+- Malky.the.properly.scientific
+- Janice.the.politely.aloof
+- Adriel.the.unnecessarily.excited
+- Myleigh.the.questioningly.demonic
+- Christina.the.seldom.interesting
