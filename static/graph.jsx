@@ -1,20 +1,35 @@
+// The root component. Has a control section and a graph section
 var GraphInterface = React.createClass({
-    loadGraph: function(graph_params) {
-        console.log("loading graph!");
+    getInitialState: function () {
+        return {initial_request_sent: false};
+    },
+
+    // Send the graph parameters to the server, and hide the form
+    loadGraph: function (graph_params) {
+        this.setState({initial_request_sent: true});
     },
     render: function () {
+        var controls = (<div>Loading graph...</div>);
+
+        // Only show the controls if a request hasn't been sent yet
+        if (! this.state.initial_request_sent) {
+            var controls = (<GraphParameterForm interface={this}/>);
+        }
+
         return (
             <div className="graph-interface">
-                <Controls interface={this} />
+                <div className="controls">
+                    {controls}
+                </div>
                 <Graph />
             </div>
         );
     }
 });
 
-
-var Controls = React.createClass({
-    handleSubmit: function(e) {
+// User submits this to actually load a graph
+var GraphParameterForm = React.createClass({
+    handleSubmit: function (e) {
         e.preventDefault();
         var num_classes = React.findDOMNode(this.refs.num_classes).value.trim();
         var class_size = React.findDOMNode(this.refs.class_size).value.trim();
@@ -26,18 +41,18 @@ var Controls = React.createClass({
     },
     render: function () {
         return (
-            <div className="controls">
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="# of classes (e.g. 10)" ref="num_classes" />
-                    <input type="text" placeholder="Class size" ref="class_size" />
-                    <input type="submit" value="Generate Graph" />
-                </form>
-            </div>
+            <form onSubmit={this.handleSubmit}>
+                # of classes:
+                <input type="text" placeholder="1 to 25" ref="num_classes"/>
+                Average class size:
+                <input type="text" placeholder="1 - 30" ref="class_size"/>
+                <input type="submit" value="Generate Graph"/>
+            </form>
         );
     }
 });
 
-
+// This component is mostly a container for d3's SVG
 var Graph = React.createClass({
     render: function () {
         return (

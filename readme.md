@@ -38,4 +38,5 @@ Extra notes
 
 Things that could use tweaking:
 
-- Don't use the client-side JSX transformer, and use a javascript minifier/combiner
+- Only one session at a time is supported (multiple tabs... not today!)
+- The client-side JSX transformer is being used, and there's no compressing of JavaScript
