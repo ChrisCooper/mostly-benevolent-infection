@@ -38,4 +38,4 @@ Extra notes
 
 Things that could use tweaking:
 
-- don't use the client-side JSX transformer
+- Don't use the client-side JSX transformer, and use a javascript minifier/combiner
