@@ -102,7 +102,7 @@ class TestInfectionComplexCases(InfectionTestCase):
             )
 
     def test_complex_connected_case(self):
-        # connect the loop and the line randomly
+        # connect the loop and the line
         self.us[4].add_coach(self.us[6])
 
         indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13]
