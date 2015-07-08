@@ -1,9 +1,9 @@
-// The root component. Has a control section and a graph section
+// The root component. Has a control section and a banner
 var GraphInterface = React.createClass({
     getInitialState: function () {
         return {
             initial_request_sent: false,
-            banner_message: undefined,
+            banner_message: undefined
         };
     },
 
@@ -27,6 +27,8 @@ var GraphInterface = React.createClass({
                 });
                 console.log(e);
             }
+
+            app.props.graph.loadGraphData(results);
         });
     },
     render: function () {
@@ -45,7 +47,6 @@ var GraphInterface = React.createClass({
                 <div className="banner-message">
                     {banner}
                 </div>
-                <Graph />
             </div>
         );
     }
@@ -76,19 +77,9 @@ var GraphParameterForm = React.createClass({
     }
 });
 
-// This component is mostly a container for d3's SVG
-var Graph = React.createClass({
-    render: function () {
-        return (
-            <div id="graph-d3-root" className="d3-graph">
-                Graph
-            </div>
-        );
-    }
-});
-
+var infection_graph = new InfectionGraph("#d3_graph_root");
 
 React.render(
-    <GraphInterface graph_url="/graph" />,
+    <GraphInterface graph_url="/graph" graph={infection_graph}/>,
     $("#container")[0]
 );

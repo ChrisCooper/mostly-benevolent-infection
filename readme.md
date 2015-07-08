@@ -41,6 +41,7 @@ Things that could use tweaking:
 - Only one session at a time is supported (multiple tabs... not today!) via an ugly global variable
 - The client-side JSX transformer is being used, and there's no compressing of JavaScript
 - Tests don't extend to web app section
+- I'm not familiar enough with how React re-renders to be braver in combining them. They're pretty separate right now, but it's acceptable that way
 
 Extra Notes
 -------------

@@ -35,7 +35,7 @@ def reset_graph():
 def users_to_graph_json(users):
     # todo: really encode users and links
     return json.dumps({
-        "users": [
+        "nodes": [
             {
                 "site_version": 1,
                 "email": "me@site.com"

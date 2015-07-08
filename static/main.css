@@ -1,0 +1,20 @@
+
+.node {
+    stroke: #fff;
+    stroke-width:1.0px;
+    fill: blue;
+}
+
+.node .infected {
+    stroke: #000;
+    stroke-width:3.0px;
+    fill: #0f0;
+}
+
+.node .selected {
+    stroke: black;
+}
+
+.link {
+    stroke: #999;
+}
