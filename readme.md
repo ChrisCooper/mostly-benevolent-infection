@@ -5,7 +5,7 @@ Mostly-Benevolent Infection illustrates how one might spread new features to use
 
 The main principle is to avoid giving different versions to users in the same classroom or with coaching relationships.
 
-In this guide, all commands are assumed to be executed in the project root directory
+In this guide, all commands are assumed to be executed in the project root directory. 
 
 Setting up
 ----------
@@ -31,3 +31,11 @@ Running the app
     python main.py
 
 The app should now be running at [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+
+Extra notes
+-------------
+
+Things that could use tweaking:
+
+- don't use the client-side JSX transformer
