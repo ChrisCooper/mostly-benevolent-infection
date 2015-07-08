@@ -15,7 +15,7 @@ class TestUserModelBasics(unittest.TestCase):
         self.assertRaises(AttributeError, lambda: self.add_bad_coach(self.u))
 
     def add_bad_coach(self, user):
-        user.add_coach('i\'m a board certified spanish tutor')
+        user.add_coach('I\'m a board certified spanish tutor!')
 
     def test_coach_relationship_works(self):
         c = models.User()
