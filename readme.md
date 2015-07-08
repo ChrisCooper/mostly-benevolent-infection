@@ -50,6 +50,10 @@ There are many approaches, but I took the greedy one, starting from a given user
 outgoing edges from the infected partition by expanding to nodes of low partition-leaving degree and high
 partition-internal degree first.
 
+I expect a greedy expanding algorithm like this minimizes reads from the datastore.
+You don't need to figure out in advance what users in the population should be considered, and instead read
+each user as you go. Since this wasn't implemented with Datastore, it remains a theory!
+
 
 Reflections
 -------------
