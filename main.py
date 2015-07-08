@@ -3,6 +3,7 @@ import json
 
 from graph_generation import new_school, new_classroom
 from infection import infect
+from limited_infection import limited_infect
 
 app = Flask(__name__)
 
@@ -25,7 +26,7 @@ def reset_graph():
     num_classes = dict_int(request.form, 'num_classes', 10)
 
     class_gen = lambda: new_classroom(10, variation_coeff=1)
-    schools = [new_school(num_classes, 0.5, class_gen) for i in range(num_schools)]
+    schools = [new_school(num_classes, 0.5, class_gen, extra_coaching_rate=0.1) for i in range(num_schools)]
 
     # flatten schools list
     graph = [user for school in schools for user in school]
@@ -63,7 +64,8 @@ def infect_user():
     index = int(request.form['user_index'])
 
     # hardcoding version here is ugly
-    infect(graph[index], 2)
+    #infect(graph[index], 2)
+    limited_infect(graph[index], 2, 50)
 
     infected_indices = filter(lambda i: graph[i].site_version == 2, range(len(graph)))
 

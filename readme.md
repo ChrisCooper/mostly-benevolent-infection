@@ -43,6 +43,14 @@ Running the app
 The app should now be running at [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
 
 
+Limited infection
+---------------
+
+There are many approaches, but I took the greedy one, starting from a given user. The algorithm aims to minimize
+outgoing edges from the infected partition by expanding to nodes of low partition-leaving degree and high
+partition-internal degree first.
+
+
 Reflections
 -------------
 
@@ -55,7 +63,7 @@ Things that could use tweaking:
 
 - Only one session at a time is supported (multiple tabs... not today!) via an ugly global variable
 - The client-side JSX transformer is being used, and there's no compressing of JavaScript
-- Tests don't extend to the web app section
+- Tests don't extend to the web app section, or to limited_infect
 - Limits on school and class sizes are not enforced
 - I'm not familiar enough with how React re-renders to be braver in combining it withthe d3 postions. They're pretty
 separate right now, but it's not that way
