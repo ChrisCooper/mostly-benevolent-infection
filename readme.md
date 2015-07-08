@@ -5,7 +5,7 @@ Mostly-Benevolent Infection illustrates how one might spread new features to use
 
 The main principle is to avoid giving different versions to users in the same classroom or with coaching relationships.
 Infection is illustrated through a simple web interface displaying the graph of users. 
-This is not really a robust or friendly application, but rather a simple visualization!
+This is not really a robust or friendly application, but rather a simple visualization! :)
 
 The project could also have been implemented more easily completely in JavaScript, but I decided to put the
 infection logic in the server. Deciding when updates go out is best left to the people running the site.
