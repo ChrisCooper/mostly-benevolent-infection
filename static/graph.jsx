@@ -1,15 +1,36 @@
 // The root component. Has a control section and a graph section
 var GraphInterface = React.createClass({
     getInitialState: function () {
-        return {initial_request_sent: false};
+        return {
+            initial_request_sent: false,
+            banner_message: undefined,
+        };
     },
 
     // Send the graph parameters to the server, and hide the form
     loadGraph: function (graph_params) {
-        this.setState({initial_request_sent: true});
+        this.setState({
+            initial_request_sent: true,
+            banner_message: "Loading graph..."
+        });
+
+        var app = this;
+
+        $.post(this.props.graph_url, graph_params, function (data) {
+            try {
+                var results = $.parseJSON(data);
+                app.setState(results);
+            }
+            catch (e) {
+                app.setState({
+                    banner_message: "Error loading graph! " + e
+                });
+                console.log(e);
+            }
+        });
     },
     render: function () {
-        var controls = (<div>Loading graph...</div>);
+        var banner = (<div>{this.state.banner_message}</div>);
 
         // Only show the controls if a request hasn't been sent yet
         if (! this.state.initial_request_sent) {
@@ -20,6 +41,9 @@ var GraphInterface = React.createClass({
             <div className="graph-interface">
                 <div className="controls">
                     {controls}
+                </div>
+                <div className="banner-message">
+                    {banner}
                 </div>
                 <Graph />
             </div>
@@ -65,6 +89,6 @@ var Graph = React.createClass({
 
 
 React.render(
-    <GraphInterface />,
+    <GraphInterface graph_url="/graph" />,
     $("#container")[0]
 );

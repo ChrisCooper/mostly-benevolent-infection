@@ -40,3 +40,4 @@ Things that could use tweaking:
 
 - Only one session at a time is supported (multiple tabs... not today!)
 - The client-side JSX transformer is being used, and there's no compressing of JavaScript
+- Tests don't extend to web app section
