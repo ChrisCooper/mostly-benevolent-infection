@@ -11,7 +11,7 @@ svg {
 .node {
     stroke: #fff;
     stroke-width:1.0px;
-    fill: blue;
+    fill: #00F;
 }
 
 .node .infected {
@@ -22,8 +22,13 @@ svg {
 
 .node .selected {
     stroke: black;
+    stroke-width:5.0px;
 }
 
 .link {
     stroke: #999;
+}
+
+.arrow {
+    fill: #666;
 }

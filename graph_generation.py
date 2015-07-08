@@ -10,7 +10,6 @@ import itertools
 
 from models import User
 
-
 def new_school(avg_num_classes, variation_coeff, class_gen, extra_coaching_rate=0.06):
     """
     Creates a list of students from many classes. Some inter-class relationships can be formed
