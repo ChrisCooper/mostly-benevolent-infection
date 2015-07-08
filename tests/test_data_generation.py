@@ -1,5 +1,6 @@
 import unittest
-import numpy
+from math import sqrt
+
 import fun
 import graph_generation
 import models
@@ -36,7 +37,7 @@ class TestClassroomGeneration(unittest.TestCase):
         mean_users = mean([len(c) for c in classrooms])
 
         # We generate the 99.99% confidence interval for this sample mean
-        max_distance = z_for_99_point_99_confidence * pop_std_dev / numpy.sqrt(n)
+        max_distance = z_for_99_point_99_confidence * pop_std_dev / sqrt(n)
 
         self.assertTrue(
             abs(mean_users - pop_avg) < max_distance,
