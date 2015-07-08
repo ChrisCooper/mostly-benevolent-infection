@@ -1,4 +1,13 @@
 
+body {
+    background-color: #EFEFEF;
+}
+
+
+svg {
+    background-color: #FFF;
+}
+
 .node {
     stroke: #fff;
     stroke-width:1.0px;

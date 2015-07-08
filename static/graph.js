@@ -157,16 +157,8 @@ var InfectionGraph = function(selector) {
 
         graph.tick = function() {
             // Position nodes based on the simulation
-            graph.node.attr('cx', function (d) {
-                // infected nodes get a little nudge to separate them
-                if (d.site_version >= 2) {
-                    d.x += 0.3;
-                } else {
-                    d.x -= 0.3;
-                }
-                return d.x;
-            })
-            .attr('cy', function (d) {return d.y;});
+            graph.node.attr('cx', function (d) {return d.x;})
+                .attr('cy', function (d) {return d.y;});
 
             // Position edges between nodes
             graph.link.attr("x1", function (d) {return d.source.x;})

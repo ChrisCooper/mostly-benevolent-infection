@@ -20,6 +20,9 @@ var GraphInterface = React.createClass({
             try {
                 var results = $.parseJSON(data);
                 app.setState(results);
+                app.setState({
+                    banner_message: "Use the mousewheel to zoom, and click to drag users around!"
+                });
             }
             catch (e) {
                 app.setState({
