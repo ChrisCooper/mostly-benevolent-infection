@@ -8,7 +8,7 @@ import itertools
 def limited_infect(starting_user, new_site_version, num_users):
     """
     Currently infects exactly the specified num_users with the new site version.
-    With more time, could also take a min and max and find an optimal infection.
+    With more time, could also take a min and max and find a more optimal infection.
 
     This greedy algorithm aims to minimize outgoing edges from the infected
     partition by expanding to nodes of low partition-leaving degree and high
@@ -53,6 +53,7 @@ def limited_infect(starting_user, new_site_version, num_users):
     return num_infected
 
 def update_from_user_connections(queue, new_user, node_priorities, nodes_infected):
+    """Adds connected useres to the queue according to priority"""
     for u in users_connections(new_user):
         # no need to add already infected nodes
         if u in nodes_infected:
