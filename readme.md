@@ -5,16 +5,17 @@ Mostly-Benevolent Infection illustrates how one might spread new features to use
 
 The main principle is to avoid giving different versions to users in the same classroom or with coaching relationships.
 Infection is illustrated through a simple web interface displaying the graph of users. 
-This is not really  a robust or friendly application, but rather a simple visualization!
+This is not really a robust or friendly application, but rather a simple visualization!
 
-It could also have been implemented completely in JavaScript, but this method is closer to how
-I imagine Khan Academy would do it. Of course, that would also be using the Datastore, instead of in-memory
-processing.
+The project could also have been implemented more easily completely in JavaScript, but I decided to put the
+infection logic in the server. Deciding when updates go out is best left to the people running the site.
 
-In this guide, all commands are assumed to be executed in the project root directory. 
+Of course, real life would also be using Google Datastore, instead of in-memory processing!
 
 Setting up
 ----------
+
+In this guide, all commands are to be executed in the project root directory. 
 
 This app has been tested with Python 2.7.6 on Ubuntu 14.04 and Python 2.7.5 on OS X 10.9.5.
 
@@ -24,9 +25,9 @@ This app has been tested with Python 2.7.6 on Ubuntu 14.04 and Python 2.7.5 on O
     # Install required packages
     pip install -r requirements.txt
 
-If either of the commands fail because they're not installed, here are guides for
-[pip](https://pip.pypa.io/en/latest/installing.html) and here
-for [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html)
+If either of these commands fail because they're not installed, here are guides for
+[pip](https://pip.pypa.io/en/latest/installing.html) and
+[virtualenv](https://virtualenv.pypa.io/en/latest/installation.html)
 
 Running tests
 -------------
@@ -54,11 +55,12 @@ Things that could use tweaking:
 
 - Only one session at a time is supported (multiple tabs... not today!) via an ugly global variable
 - The client-side JSX transformer is being used, and there's no compressing of JavaScript
-- Tests don't extend to web app section
-- Limits on school and class siszed are not enforced
-- I'm not familiar enough with how React re-renders to be braver in combining them. They're pretty separate right now, but it's acceptable that way
+- Tests don't extend to the web app section
+- Limits on school and class sizes are not enforced
+- I'm not familiar enough with how React re-renders to be braver in combining it withthe d3 postions. They're pretty
+separate right now, but it's not that way
 - Infection status is tested based on 1ness or 2ness or the site_version. Too much hard-coding
-- The logic of the react interface is a bit convoluted and could use some more design
+- The logic of the react interface state is a bit convoluted and could use some more design work
 - The entire list of infected nodes is transmitted on each infection. Should probably just be a diff!
 
 Extra Notes
