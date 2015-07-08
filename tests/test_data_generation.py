@@ -31,7 +31,7 @@ class TestClassroomGeneration(unittest.TestCase):
                 variation_coeff=pop_std_dev * 1.0 / pop_avg
             )
             for c in range(n)
-        ]
+            ]
 
         mean_users = mean([len(c) for c in classrooms])
 
@@ -49,7 +49,7 @@ class TestClassroomGeneration(unittest.TestCase):
         classrooms = [
             graph_generation.new_classroom(avg_num_students=25, variation_coeff=0.1)
             for c in range(n)
-        ]
+            ]
 
         for c in classrooms:
             # Make sure there's at least one user with n-1 learners
@@ -105,9 +105,10 @@ class TestRandomCoaching(unittest.TestCase):
             msg="Found a coach unexpectedly"
         )
 
+
 class TestBoundedDistribution(unittest.TestCase):
     def test_lower_bound(self):
-        for mean in range(-5,5):
+        for mean in range(-5, 5):
             self.assertGreaterEqual(
                 graph_generation.int_from_bounded_distribution(mean, 10),
                 1,
@@ -133,8 +134,6 @@ class TestFunEmails(unittest.TestCase):
 
 def mean(nums):
     return sum(nums) * 1.0 / len(nums)
-
-
 
 
 if __name__ == '__main__':
