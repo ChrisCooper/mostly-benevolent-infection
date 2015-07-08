@@ -39,20 +39,23 @@ var GraphInterface = React.createClass({
     nodeWasSelected: function(node_index) {
         this.setState({selected_node: node_index, node_is_selected: true});
     },
-    infectNode: function() {
+    infectNode: function(infection_limit) {
         var app = this;
-        $.post(this.props.infect_url, {user_index: this.state.selected_node}, function (data) {
-            try {
-                var infected_indices = $.parseJSON(data);
-                app.props.graph.infect_indices(infected_indices);
-            }
-            catch (e) {
-                app.setState({
-                    banner_message: "Error infecting graph! " + e
-                });
-                console.log(e);
-            }
-        });
+        $.post(
+            this.props.infect_url,
+            {user_index: this.state.selected_node, limit: infection_limit},
+            function (data) {
+                try {
+                    var infected_indices = $.parseJSON(data);
+                    app.props.graph.infect_indices(infected_indices);
+                }
+                catch (e) {
+                    app.setState({
+                        banner_message: "Error infecting graph! " + e
+                    });
+                    console.log(e);
+                }
+            });
     },
     render: function () {
         var banner = (<div>{this.state.banner_message}</div>);
@@ -109,18 +112,27 @@ var GraphParameterForm = React.createClass({
 
 var InfectButton = React.createClass({
     handleClick: function (e) {
-        this.props.app.infectNode();
+        var infection_limit = React.findDOMNode(this.refs.infection_limit).value.trim();
+        this.props.app.infectNode(infection_limit);
     },
     render: function () {
+        var button;
         if (this.props.selected_email) {
-            return (
+            button = (
                 <button onClick={this.handleClick} ref="button">Infect {this.props.selected_email}!</button>
             );
         } else {
-            return (
+            button = (
                 <button disabled onClick={this.handleClick} ref="button">Select a user to infect first</button>
             );
         }
+
+        return(
+            <div>
+                {button}
+                <input type="text" placeholder="optional infection limit" ref="infection_limit"/>
+            </div>
+        );
     }
 });
 

@@ -63,9 +63,17 @@ def infect_user():
 
     index = int(request.form['user_index'])
 
+    limit = None
+    try:
+        limit = int(request.form['limit'])
+    except ValueError:
+        pass
+
     # hardcoding version here is ugly
-    #infect(graph[index], 2)
-    limited_infect(graph[index], 2, 50)
+    if limit is None:
+        infect(graph[index], 2)
+    else:
+        limited_infect(graph[index], 2, limit)
 
     infected_indices = filter(lambda i: graph[i].site_version == 2, range(len(graph)))
 
